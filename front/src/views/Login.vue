@@ -1,13 +1,11 @@
 <template>
-    <router-view />
+    <div>LOGIN</div>
 </template>
 
 <script>
 export default {
-    name: "App",
+    name: "Home",
     components: {},
+    method: {},
 };
 </script>
-
-<style>
-</style>
