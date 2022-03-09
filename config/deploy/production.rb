@@ -1,3 +1,8 @@
+server "datarc.srvz-webapp.he-arc.ch", user: "poweruser", 
+    			        roles: %w{app db web}, port: 1444
+
+set :deploy_to, "/var/www/#{fetch(:application)}"
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
