@@ -3,6 +3,37 @@ server "datarc.srvz-webapp.he-arc.ch", user: "poweruser",
 
 set :deploy_to, "/var/www/#{fetch(:application)}"
 
+
+
+after 'deploy:updating', 'python:update_venv'
+
+namespace :python do
+
+    def venv_path
+        File.join(shared_path, 'env')
+    end
+
+    desc 'update venv'
+    task :update_venv do
+        on roles([:app, :web]) do |h|
+            execute "source #{venv_path}/bin/activate && #{venv_path}/bin/pip install -r #{release_path}/back/requirements.txt"
+        end
+    end
+end
+
+
+
+after 'deploy:publishing', 'frontend:compile'
+
+namespace :frontend do
+    desc 'compile frontend'
+    task :compile do
+        on roles(:web) do |h|
+            execute "cd #{release_path}/front && npm install && npm run build"
+	    end
+    end
+end
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
