@@ -10,7 +10,7 @@ after 'deploy:updating', 'python:update_venv'
 namespace :python do
 
     def venv_path
-        File.join(shared_path, 'env')
+        File.join(release_path, 'back/.venv')
     end
 
     desc 'update venv'
