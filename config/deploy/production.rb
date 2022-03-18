@@ -11,7 +11,8 @@ namespace :python do
     desc 'update venv'
     task :update_venv do
         on roles([:web]) do |h|
-            execute "cd #{release_path}/back && source .venv/bin/activate && .venv/bin/pip install -r requirements.txt"
+            execute "cd #{release_path}/back && source .venv/bin/activate"
+            execute ".venv/bin/pip install -r requirements.txt"
         end
     end
 end
