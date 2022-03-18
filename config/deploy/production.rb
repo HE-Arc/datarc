@@ -8,15 +8,10 @@ set :deploy_to, "/var/www/#{fetch(:application)}"
 after 'deploy:updating', 'python:update_venv'
 
 namespace :python do
-
-    def venv_path
-        File.join(release_path, 'back/.venv')
-    end
-
     desc 'update venv'
     task :update_venv do
         on roles([:app, :web]) do |h|
-            execute "source #{venv_path}/bin/activate && #{venv_path}/bin/pip install -r #{release_path}/back/requirements.txt"
+            execute "cd #{release_path}/back && source .venv/bin/activate && .venv/bin/pip install -r requirements.txt"
         end
     end
 end
