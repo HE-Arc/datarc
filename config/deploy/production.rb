@@ -5,16 +5,16 @@ set :deploy_to, "/var/www/#{fetch(:application)}"
 
 
 
-after 'deploy:updating', 'python:update_venv'
+#after 'deploy:updating', 'python:update_venv'
 
-namespace :python do
-    desc 'update venv'
-    task :update_venv do
-        on roles([:web]) do |h|
-            execute "cd #{release_path}/back && source ./.venv/bin/activate && ./.venv/bin/pip install -r ./requirements.txt"
-        end
-    end
-end
+#namespace :python do
+#    desc 'update venv'
+#    task :update_venv do
+#        on roles([:web]) do |h|
+#            execute "cd #{release_path}/back && source ./.venv/bin/activate && ./.venv/bin/pip install -r ./requirements.txt"
+#        end
+#    end
+#end
 
 
 
