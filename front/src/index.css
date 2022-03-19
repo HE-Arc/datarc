@@ -1,3 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Chango&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.title{
+    font-family: chango, system-ui, display;
+}
+
+@layer base{
+    body{
+        @apply bg-gray-600;
+    }
+
+}
+@layer utilities{
+    .btn{
+        @apply bg-yellow-400 rounded text-white font-bold py-2 px-4;   
+    }
+}
