@@ -18,7 +18,6 @@
                     </div>
                     <div class="flex justify-between">
                         <router-link to="register" class="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">Don't have an account?</router-link>
-                        <router-link ></router-link>
                         <router-link to="recoverPassword" class="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">Forgot your password?</router-link>
                     </div>
                     <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Sign In</button>

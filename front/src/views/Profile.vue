@@ -10,7 +10,7 @@
                 <File/>
             </div>
             <div class="mx-auto">
-                <div class="text-2xL">Mes Partager avec moi</div>
+                <div class="text-2xL">Mes fichiers partagés avec moi</div>
                 <File/>
             </div>    
         </div>
