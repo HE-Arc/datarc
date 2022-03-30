@@ -38,5 +38,5 @@ export default {
     created(){
         document.title = 'Login - ' + document.title;
     },
-};
+}
 </script>
