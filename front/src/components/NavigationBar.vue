@@ -24,9 +24,12 @@
                 </ul>
             </div>
             <div class="">
-                <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+                <ul class="flex flex-col mt-4 md:flex-row md:mt-0 md:text-sm md:font-medium">
                     <li>
-                    <router-link to="login" class="btn">Login</router-link>
+                        <router-link to="register" class="btn btn-yellow bg-transparent rounded-r-none">Sign up</router-link>
+                    </li>
+                    <li>
+                        <router-link to="login" class="btn btn-yellow rounded-l-none">Sign in</router-link>
                     </li>
                 </ul>
             </div>
