@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ql80icgo&g^)e$2(5m72a8-0+^18sd7pq$w%5&0^qhb=o*0bp5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['datarc.srvz-webapp.he-arc.ch']
 
 
 # Application definition
