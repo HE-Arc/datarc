@@ -8,7 +8,9 @@
 
 export default {
     name: "SplashScreen",
-    props: ['isLoading'],
+    props: {
+      isLoading : Boolean,
+    },
     
     methods: {},
     components: {},
@@ -18,12 +20,18 @@ export default {
 <style>
 
 .fadeout {
-  animation: fadeout 2s forwards;
+  animation: fadeout 0.5s forwards;
 }
 
 @keyframes fadeout {
+  from{
+    opacity: 1;
+    top: 0px;
+    visibility: initial;
+  }
   to {
     opacity: 0;
+    top: 100%;
     visibility: hidden;
   }
 }
