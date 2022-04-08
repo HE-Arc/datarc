@@ -12,7 +12,7 @@
                     </p>
                 </div>
                 <div class="grid justify-center content-end w-1/3 p-2">
-                    <router-link to="login" class="btn text-xl">Login</router-link>
+                    <router-link to="register" class="btn btn-yellow text-xl">Sign up</router-link>
                 </div>
             </div>
         </div>
