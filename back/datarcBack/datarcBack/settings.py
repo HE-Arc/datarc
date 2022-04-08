@@ -17,9 +17,7 @@ import environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Setting up environment file
-env = environ.Env(
-    SOUSMOT_DEBUG_MODE=(bool, False)
-)
+env = environ.Env()
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
