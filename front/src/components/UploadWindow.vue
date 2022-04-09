@@ -1,9 +1,8 @@
 <template>
-    <div>
-        <input type="file" id="input" multiple />
-        <button v-on:click="upload">upload</button>
-        <br />
-        <button v-on:click="download">download</button>
+    <div class="w-full h-full absolute inline-block" @dragover.prevent @drop.prevent>
+        <input type="file" id="file" ref="file" accept=".pdf,.jpg,.jpeg,.png" @change="changeFile" hidden/>
+        <div class="dropzone w-full h-full block border-dashed" @drop="onDrop" @dragenter="setEnter" @dragleave="setLeave">
+        </div>
     </div>
 </template>
 
@@ -13,13 +12,40 @@ import { uploadFile, downloadFile } from "../Tools/UploadTools.js";
 export default {
     name: "UploadWindow",
     data() {
-        return {};
+        return {
+            fileList: [],
+            number: 0,
+        };
     },
     components: {},
     methods: {
+        onChange(){
+            this.fileList = [...this.$refs.file.files];
+        },
+        setEnter(e){
+            if (e.target.classList.contains("dropzone") ) {
+                e.target.classList.add("border-8");
+            }
+        },
+        setLeave(e){
+            if (e.target.classList.contains("dropzone") ) {
+                e.target.classList.remove("border-8");
+            }
+        },
+        onDrop(e){
+            e.preventDefault();
+            this.$refs.file.files = e.dataTransfer.files;
+            console.log(this.$refs.file.files);
+            console.log(this.$refs.file.files[0]);
+            this.number = this.$refs.file.files.length;
+            this.onChange(); // Trigger the onChange event manually
+            // Clean up
+            this.setLeave(e);
+        },
         upload() {
             console.log("upload !");
-            const selectedFile = document.getElementById("input").files[0];
+            const selectedFile = document.getElementById("file").files[0];
+
             if (selectedFile == null) {
                 return;
             }
