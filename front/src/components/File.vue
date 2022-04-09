@@ -1,16 +1,18 @@
 <template>
-    <div class="bg-gray-200 max-w-full min-w-0 cursor-pointer rounded-lg m-4" @click="toggleModal">
+    <div class="bg-gray-200 max-w-full min-w-0 cursor-pointer rounded-lg m-4 z-20" @click="toggleModal">
         <div class="w-full">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
             
-            <div class="w-full rounded-b-lg overflow-hidden whitespace-nowrap bg-red-400 opacity-50">
-                {{ filename }}
+            <div class="w-full rounded-b-lg bg-red-400 opacity-70">
+                <div class="w-11/12 font-bold overflow-hidden overflow-ellipsis mx-auto whitespace-nowrap backdrop-opacity-100">
+                    {{ filename }}
+                </div>
             </div>
         </div>
     </div>
-    <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center" v-if="isSelected">
+    <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center z-30" v-if="isSelected">
         <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
     
         <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
