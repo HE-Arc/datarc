@@ -14,7 +14,6 @@ export default {
     data() {
         return {
             fileList: [],
-            number: 0,
         };
     },
     components: {},
@@ -35,8 +34,6 @@ export default {
         onDrop(e){
             e.preventDefault();
             this.$refs.file.files = e.dataTransfer.files;
-            console.log(this.$refs.file.files);
-            console.log(this.$refs.file.files[0]);
             this.number = this.$refs.file.files.length;
             this.onChange(); // Trigger the onChange event manually
             // Clean up
@@ -62,7 +59,5 @@ export default {
 </script>
 
 <style >
-#errorMsg {
-    display: v-bind(display);
-}
+
 </style>
