@@ -30,8 +30,8 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['datarc.srvz-webapp.he-arc.ch', 'localhost']
 
+ALLOWED_HOSTS = ['datarc.srvz-webapp.he-arc.ch', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -138,6 +138,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
 "http://localhost:8080",
+"https://localhost:8080",
+"http://127.0.0.1:8080",
+
+
 ]
 
 CORS_ALLOW_CREDENTIALS = True

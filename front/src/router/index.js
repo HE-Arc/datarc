@@ -4,42 +4,46 @@ import Login from '../views/Login.vue'
 import Upload from '../views/Upload.vue'
 import Register from '../views/Register.vue'
 import Profile from '../views/Profile.vue'
+import Test from '../views/Test.vue'
+
 
 const routes = [{
         path: '/',
         name: 'Home',
         component: Home,
         meta: {
-            transition : 'fade',
+            transition: 'fade',
         },
     },
     {
         path: '/login',
         name: 'login',
         component: Login,
-        meta: {
-        },
+        meta: {},
     },
     {
         path: '/upload',
         name: 'upload',
         component: Upload,
-        meta: {
-        },
+        meta: {},
     },
     {
         path: '/register',
         name: 'register',
         component: Register,
-        meta: {
-        },
+        meta: {},
     },
     {
         path: '/profile',
         name: 'profile',
         component: Profile,
-        meta: {
-        },
+        meta: {},
+    },
+    {
+        path: '/test',
+        name: 'test',
+        component: Test,
+        meta: {},
     }
 ]
 
