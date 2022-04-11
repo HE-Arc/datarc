@@ -30,12 +30,8 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = ['datarc.srvz-webapp.he-arc.ch', '127.0.0.1']
-=======
-ALLOWED_HOSTS = ['datarc.srvz-webapp.he-arc.ch', 'localhost']
->>>>>>> ac7d3190f46b2f3f62219aa72f40f533c8e6905a
 
+ALLOWED_HOSTS = ['datarc.srvz-webapp.he-arc.ch', 'localhost', '127.0.0.1']
 
 # Application definition
 

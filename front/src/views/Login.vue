@@ -74,7 +74,6 @@
                         />
                     </div>
                     <div class="flex justify-between">
-<<<<<<< HEAD
                         <router-link
                             to="register"
                             class="
@@ -93,9 +92,7 @@
                             "
                             >Forgot your password?</router-link
                         >
-=======
-                        <router-link to="register" class="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">Don't have an account?</router-link>
->>>>>>> ac7d3190f46b2f3f62219aa72f40f533c8e6905a
+
                     </div>
                     <button
                         v-on:click="send"
