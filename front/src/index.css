@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Chango&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Megrim&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,9 +9,15 @@
     font-family: chango, system-ui, display;
 }
 
+.logo{
+    font-family: Megrim, system-ui, display;
+}
+
 @layer base{
+    
+
     body{
-        @apply bg-gray-600;
+        @apply bg-white-background dark:bg-dark-background text-white-font dark:text-dark-font;
     }
 
     .btn{
@@ -31,7 +38,4 @@
 
     
 
-}
-@layer utilities{
-    
 }
