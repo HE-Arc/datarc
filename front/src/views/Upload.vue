@@ -1,6 +1,8 @@
 <template>
     <div>Upload</div>
-    <UploadWindow />
+    <div class="w-32 h-32">
+        <UploadWindow />
+    </div>
 </template>
 
 <script>

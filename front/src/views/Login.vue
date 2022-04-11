@@ -1,5 +1,10 @@
 <template>
     <div class="w-full h-screen grid content-center">
+        <router-link to="/">
+            <div class="text-center logo text-yellow-300 text-5xl font-bold mb-10">
+                Datarc
+            </div>
+        </router-link>
         <main class="bg-white mx-auto p-8 rounded-lg shadow-2xl w-1/3">
             <section>
                 <h3 class="font-bold text-2xl">Welcome to Datarc</h3>
@@ -69,6 +74,7 @@
                         />
                     </div>
                     <div class="flex justify-between">
+<<<<<<< HEAD
                         <router-link
                             to="register"
                             class="
@@ -87,6 +93,9 @@
                             "
                             >Forgot your password?</router-link
                         >
+=======
+                        <router-link to="register" class="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">Don't have an account?</router-link>
+>>>>>>> ac7d3190f46b2f3f62219aa72f40f533c8e6905a
                     </div>
                     <button
                         v-on:click="send"
