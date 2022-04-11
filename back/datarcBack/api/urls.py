@@ -9,5 +9,6 @@ urlpatterns = [
     path('file/', views.file, name='file'),
     path('files/', views.files, name='files'),
     path('upload/', views.upload, name='upload'),
+    path('user/', views.user, name='user'),
 
 ]

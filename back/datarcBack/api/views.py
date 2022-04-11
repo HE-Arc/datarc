@@ -20,6 +20,18 @@ def index(request):
     user.save()
     return HttpResponse("API.")
 
+
+#return user info if valid token
+def user(request):
+    print("salut")
+    if request.method == 'GET':
+        user = getUser(request)
+        if user != -1:
+            return JsonResponse({'status' : 'ok', 'name' : user.name})
+        else:
+            return JsonResponse({'status' : 'wrong token'})
+    return JsonResponse({'status' : 'error wrong arguments'}) 
+
 @csrf_exempt
 def create_user(request):
     if request.method == 'POST':
