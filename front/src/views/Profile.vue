@@ -7,12 +7,12 @@
 			</div>
 			<div class="flex gap-4 mx-8 mt-8 relative">
 				<div class="w-1/2 h-full mx-auto relative">
-					<div class="flex min-h-min justify-between bg-white-background-subtitle dark:bg-dark-background-subtitle rounded-md sticky top-0">
+					<div class="flex min-h-min justify-between bg-white-background-subtitle dark:bg-dark-background-subtitle rounded-md sticky top-0 z-40">
 						<div class="text-3xl font-bold text-center p-4">
 							Mes Fichiers
 						</div>
 						<input type="file" id="file" @change="upload" hidden/>
-                        <label for="file" class="w-16 p-2 text-yellow-300 cursor-pointer z-40">
+                        <label for="file" class="w-16 p-2 text-yellow-300 cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                             </svg>
@@ -24,7 +24,7 @@
 					</div>
 				</div>
 				<div class="w-1/2 mx-auto">
-					<div class="flex bg-white-background-subtitle dark:bg-dark-background-subtitle rounded-md sticky top-0">
+					<div class="flex bg-white-background-subtitle dark:bg-dark-background-subtitle rounded-md sticky top-0 z-40">
 						<div class="text-3xl font-bold text-center p-4">
 							Mes fichiers partagés avec moi
 						</div>
@@ -111,7 +111,7 @@
 						this.name = data.name;
 					}
 				} catch (error) {
-					//goTo("/");
+					goTo("/");
 				}
 				try {
 					let data = await getData("/files", {
@@ -128,10 +128,10 @@
 						}
 					}
 				} catch (error) {
-					//goTo("/");
+					goTo("/");
 				}
 			} else {
-				//goTo("/");
+				goTo("/");
 			}
 		},
 	};
