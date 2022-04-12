@@ -13,13 +13,27 @@ from django.core.files import File as djangoFile
 from django.http import FileResponse
 
 
-FILE_PATH = "/home/mat/Desktop/data"
-
+#FILE_PATH = "/home/mat/Desktop/data"
+FILE_PATH = "/home/poweruser/data"
 def index(request):
     user = User(name="joe", password="mdp")
     user.save()
     return HttpResponse("API.")
 
+
+#return user info if valid token
+def user(request):
+    print("salut")
+    if request.method == 'GET':
+        user = getUser(request)
+        if user != -1:
+            return JsonResponse({'status' : 'ok', 'name' : user.name})
+        else:
+            return JsonResponse({'status' : 'wrong token'})
+    return JsonResponse({'status' : 'error wrong arguments'}) 
+
+
+#create a new user and retun Authentication token
 @csrf_exempt
 def create_user(request):
     if request.method == 'POST':
@@ -41,7 +55,7 @@ def create_user(request):
             
     return JsonResponse({'status' : 'error'})
     
-    
+#return an Authentication token  
 @csrf_exempt
 def login(request):
     if request.method == 'POST':
@@ -83,40 +97,43 @@ def file(request):
                 UserAccess(userId=user.id, fileId=new_file.id).save()
                 
                 return JsonResponse({'status' : 'ok', 'url' : url})
-            
+      #retrun the file or a 403 error      
     elif request.method == 'GET':
+        response = HttpResponse()
+        response.status_code = 403
         if 'url' in request.GET.keys():
             if valid_file_url(request.GET['url']):
                 files =  File.objects.all().filter(url=request.GET['url'])
                 if len(files) != 1:
-                    return JsonResponse({'status' : 'error file doesnt exist'})
+                    return response
                 my_file = files[0]
                 if my_file.public == True:
                     return FileResponse( open(my_file.path, "rb"))
                 else:
                     user = getUser(request)
                     if user == -1:
-                        return JsonResponse({'status' : 'error wrong token'})
+                        return response
                     files_right = UserAccess.objects.all().filter(userId=user.id, fileId=my_file.id)
                     if len(files_right) != 1:
-                        return JsonResponse({'status' : 'error file access'})
+                        return response
                     return FileResponse( open(my_file.path, "rb"))
   
                     
-    return JsonResponse({'status' : 'error'})
+    return response
     
     
-    
+#return users files
 def files(request):
     user = getUser(request)
     if user == -1:
         return JsonResponse({'status' : 'error user doesnt exist'})    
-    user_access = UserAccess.objects.all().filter(userId=user.id)
-    files_id = map(lambda elem : elem.fileId, user_access)
+    user_file = UserFile.objects.all().filter(userId=user.id)
+    files_id = map(lambda elem : elem.fileId, user_file)
     files = []
     for id in files_id:
-        files.append(File.objects.all().filter(id=id)[0])              
-    result = {"status" : "ok", "files" : len(files)}
+        f = File.objects.all().filter(id=id)[0]
+        files.append({'name': f.name, 'url' : f.url})       
+    result = {"status" : "ok", "files" : files}
     return JsonResponse(result)
 
 

@@ -1,42 +1,77 @@
 <template>
-    <div class="h-screen">
-        <NavigationBar/>
-        <div class="grid justify-center mx-auto h-5/6 rounded-lg">
-            <div class="flex m-auto gap-2">
-                <div class="flex-col ">
-                    <div class="title text-6xl text-yellow-400 mb-4">
-                        Welcome
-                    </div>
-                    <p class="text-justify text-xl cursor-pointer">
-                        {{ welcomeText }}
-                    </p>
-                </div>
-                <div class="grid justify-center content-end w-1/3 p-2">
-                    <router-link to="register" class="btn btn-yellow text-xl">Sign up</router-link>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="h-screen">
+		<NavigationBar />
+		<div class="grid justify-center mx-auto h-5/6 rounded-lg">
+			<div class="flex m-auto gap-2">
+				<div class="flex-col">
+					<div
+						v-if="isConnected"
+						class="title text-6xl text-yellow-400 mb-4"
+					>
+						Welcome {{ name }} !
+					</div>
+					<div v-else class="title text-6xl text-yellow-400 mb-4">
+						Welcome
+					</div>
+					<p class="text-justify text-xl">
+						{{ welcomeText }}
+					</p>
+				</div>
+				<div class="grid justify-center content-end w-1/3 p-2">
+					<router-link
+						v-if="isConnected"
+						to="profile"
+						class="btn btn-yellow text-xl"
+						>profile</router-link
+					>
+					<router-link
+						v-else
+						to="register"
+						class="btn btn-yellow text-xl"
+						>Sign up</router-link
+					>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
-import NavigationBar from '@/components/NavigationBar';
+import NavigationBar from "@/components/NavigationBar";
+import { getCookie } from "../Tools/Cookie.js";
+import { getData } from "../Tools/Network.js";
 
 export default {
-    name: "Home",
-    data() {
-        return{
-            welcomeText: 'Stocker et partager vos fichiers et dossier, entre vos appareils ou vos amis',
+  name: "Home",
+  data() {
+    return {
+      welcomeText:
+        "Stocker et partager vos fichiers et dossier, entre vos appareils ou vos amis",
+      isConnected: false,
+      name: "",
+    };
+  },
+  methods: {},
+  components: {
+    NavigationBar,
+  },
+  async created() {
+    let token = getCookie("token");
+    if (token != "") {
+      try {
+        let data = await getData("/user", {
+          Authentication: token,
+        });
+        if (data.status == "ok") {
+          this.isConnected = true;
+          this.name = data.name;
         }
-    },
-    methods: {
-    },
-    components: {
-        NavigationBar,
-    },
+      } catch (error) {
+        error;
+      }
+    }
+  },
 };
 </script>
 
-<style>
-
-</style>
+<style></style>
