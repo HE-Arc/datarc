@@ -35,9 +35,6 @@
             <section>
                 <h3 class="font-bold text-2xl">Welcome to Datarc</h3>
                 <p class="text-gray-600 pt-2">Create your account.</p>
-            </section>
-
-            <section class="mt-10">
                 <div class="flex flex-col">
                     <div class="mb-6 pt-3 rounded bg-gray-200">
                         <label
@@ -61,7 +58,7 @@
                                 text-gray-700
                                 focus:outline-none
                                 border-b-4 border-gray-300
-                                focus:border-purple-600
+                                focus:border-surline-yellow
                                 transition
                                 duration-500
                                 px-3
@@ -91,7 +88,7 @@
                                 text-gray-700
                                 focus:outline-none
                                 border-b-4 border-gray-300
-                                focus:border-purple-600
+                                focus:border-surline-yellow
                                 transition
                                 duration-500
                                 px-3
@@ -121,7 +118,7 @@
                                 text-gray-700
                                 focus:outline-none
                                 border-b-4 border-gray-300
-                                focus:border-purple-600
+                                focus:border-surline-yellow
                                 transition
                                 duration-500
                                 px-3
@@ -133,28 +130,18 @@
                         <router-link
                             to="login"
                             class="
-                                text-sm text-purple-600
+                                text-sm text-surline-yellow
                                 hover:text-purple-700 hover:underline
                                 mb-6
                             "
                             >Already have an account?</router-link
                         >
-                        <router-link
-                            to="recoverPassword"
-                            class="
-                                text-sm text-purple-600
-                                hover:text-purple-700 hover:underline
-                                mb-6
-                            "
-                            >Forgot your password?</router-link
-                        >
                     </div>
                     <button
-                        v-on:click="send"
                         class="
-                            bg-purple-600
-                            hover:bg-purple-700
-                            text-white
+                            bg-surline-yellow
+                            hover:bg-yellow-400
+                            text-white-font
                             font-bold
                             py-2
                             rounded
@@ -163,6 +150,8 @@
                             transition
                             duration-200
                         "
+                        type="submit"
+                        v-on:click="send"
                     >
                         Sign Up
                     </button>
@@ -177,12 +166,14 @@ import { sendData } from "../Tools/Network.js";
 import { setCookie } from "../Tools/Cookie.js";
 import { goTo } from "../Tools/nav.js";
 import { validMail, validPassword } from "../Tools/Valid.js";
+
 export default {
     name: "Register",
     data() {},
     components: {},
     methods: {
         async send() {
+            console.log("salut");
             let mail = document.getElementById("email").value;
             let password1 = document.getElementById("password1").value;
             let password2 = document.getElementById("password2").value;
@@ -218,6 +209,7 @@ export default {
             } else {
                 this.error("passwords are not similar");
             }
+            return false;
         },
         created() {
             document.title = "Register - " + document.title;

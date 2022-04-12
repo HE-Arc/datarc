@@ -1,10 +1,15 @@
 import { url } from './Network.js'
 
 
+export function getLink(u) {
+    return url + "/file/?url=" + u;
+}
+
 export async function uploadFile(file, token = "") {
     console.log("uploading...")
-    token
-
+    if (file.size > 2000000) {
+        throw (new Error("error the file is too big"));
+    }
     let response = await fetch(url + "/file/", {
         method: 'POST',
         headers: {
@@ -30,7 +35,7 @@ export async function uploadFile(file, token = "") {
             console.log(result);
         }
     } else {
-        throw (new Error());
+        throw (new Error("error while uploading"));
     }
 }
 
@@ -41,6 +46,9 @@ export async function downloadFile(file_url, token = "", name = "myfile") {
             Authentication: token
         }
     })
+    if (await response.status == 403) {
+        throw new Error();
+    }
     let blob = await response.blob();
     const myurl = URL.createObjectURL(blob);
     download(myurl, name);
