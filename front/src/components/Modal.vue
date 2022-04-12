@@ -136,13 +136,14 @@
 				let token = getCookie("token");
 				if (token != "") {
 					try {
-						await fileUpdate(
+						let data = await fileUpdate(
 							"delete",
 							{
 								Authentication: token,
 							},
 							this.url
 						);
+						this.error(data.status);
 					} catch (error) {
 						error;
 					}
