@@ -42,7 +42,7 @@
 				</ul>
 				<ul class="flex flex-row justify-end mt-4 md:mt-0" v-else>
 					<li>
-						<button @click="deconnexion" class="btn btn-yellow bg-transparent ">
+						<button @click="deconnexion" class="btn btn-yellow text-white bg-transparent ">
 							deconnexion
 						</button>
 					</li>
@@ -54,6 +54,7 @@
 
 <script>
 	import { goTo } from "../Tools/nav.js";
+	import { setCookie } from "../Tools/Cookie.js";
 
 	export default {
 		name: "SplashScreen",
@@ -77,7 +78,7 @@
 				}
 			},
 			deconnexion() {
-				document.cookie = "";
+				setCookie("token", "");
 				goTo("/");
 			}
 		},
