@@ -1,6 +1,6 @@
 <template>
 	<div class="h-screen">
-		<NavigationBar />
+		<NavigationBar :isConnected="isConnected"/>
 		<div class="grid justify-center mx-auto h-5/6 rounded-lg">
 			<div class="flex m-auto gap-2">
 				<div class="flex-col">
