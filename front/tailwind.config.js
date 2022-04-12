@@ -17,7 +17,7 @@ module.exports = {
         'crimson' : 'E0102B',
         'white-background': '#ECF5FD',
         'white-background-header': '#25374F',
-        'white-background-subtitle': '#5980B1',
+        'white-background-subtitle': '#6689B7',
         'white-font' : '#24242E',
       },
     },
