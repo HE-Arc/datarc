@@ -68,7 +68,7 @@
 	import { sendData } from "../Tools/Network.js";
 	import { setCookie } from "../Tools/Cookie.js";
 	import { goTo } from "../Tools/nav.js";
-	import { validMail, validPassword } from "../Tools/Valid.js";
+	import { validUsername, validPassword } from "../Tools/Valid.js";
 
 	export default {
 		name: "Register",
@@ -81,7 +81,7 @@
 				let password1 = document.getElementById("password1").value;
 				let password2 = document.getElementById("password2").value;
 				if (password1 == password2) {
-					if (validMail(mail)) {
+					if (validUsername(mail)) {
 						if (validPassword(password1)) {
 							try {
 								console.log("SANDINGGG");
