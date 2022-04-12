@@ -45,7 +45,6 @@ export default {
                 console.log(event.key);
                 if(event.key === "Escape" || event.key === "Esc" || event.keyCode === 27){
                     this.closeModal();
-                    console.log("PD");
                 }
             }
         }

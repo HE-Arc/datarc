@@ -7,7 +7,7 @@
                     <div class="title text-6xl text-yellow-400 mb-4">
                         Welcome
                     </div>
-                    <p class="text-justify text-xl">
+                    <p class="text-justify text-xl cursor-pointer" @click="test">
                         {{ welcomeText }}
                     </p>
                 </div>
@@ -29,7 +29,15 @@ export default {
             welcomeText: 'Stocker et partager vos fichiers et dossier, entre vos appareils ou vos amis',
         }
     },
-    methods: {},
+    methods: {
+        test(){
+            this.$toast.open({
+                message: "Test message from Vue",
+                type: "info",
+                dismissible: true
+            })
+        }
+    },
     components: {
         NavigationBar,
     },
