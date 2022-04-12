@@ -1,33 +1,36 @@
 <template>
 	<div class="h-screen">
 		<NavigationBar :isConnected="isConnected"/>
-		<div class="grid justify-center mx-auto h-5/6 rounded-lg">
-			<div class="flex m-auto gap-2">
-				<div class="flex-col">
-					<div
-						v-if="isConnected"
-						class="title text-6xl text-yellow-400 mb-4"
-					>
-						Welcome {{ name }} !
+		<div class="grid justify-center mx-auto h-5/6 rounded-lg w-full">
+			<div class="flex flex-col md:flex-row m-auto gap-2 w-full">
+				<div class="">
+					<div v-if="true">
+						<div class="title text-4xl md:text-6xl text-yellow-400 mb-4">
+							Welcome
+						</div>
+						<div class="text-lg font-bold my-2 text-yellow-400">
+							{{ name }} !
+						</div>
 					</div>
-					<div v-else class="title text-6xl text-yellow-400 mb-4">
+					
+					<div v-else class="title text-4xl md:text-6xl text-yellow-400 mb-4">
 						Welcome
 					</div>
-					<p class="text-justify text-xl">
+					<p class="text-justify text-lg md:text-xl">
 						{{ welcomeText }}
 					</p>
 				</div>
 				<div class="grid justify-center content-end w-1/3 p-2">
 					<router-link
-						v-if="isConnected"
+						v-if="true"
 						to="profile"
-						class="btn btn-yellow text-xl"
+						class="btn btn-yellow text-lg md:text-xl"
 						>profile</router-link
 					>
 					<router-link
 						v-else
 						to="register"
-						class="btn btn-yellow text-xl"
+						class="btn btn-yellow text-lg md:text-xl"
 						>Sign up</router-link
 					>
 				</div>
@@ -48,7 +51,7 @@ export default {
       welcomeText:
         "Stocker et partager vos fichiers et dossier, entre vos appareils ou vos amis",
       isConnected: false,
-      name: "",
+      name: "wwwwwwwwwwwwwwwwwwwwwwwww",
     };
   },
   methods: {},
