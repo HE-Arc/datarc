@@ -1,7 +1,15 @@
 <template>
     <div class="w-full h-screen grid content-center">
         <router-link to="/">
-            <div class="text-center logo text-yellow-300 text-5xl font-bold mb-10">
+            <div
+                class="
+                    text-center
+                    logo
+                    text-yellow-300 text-5xl
+                    font-bold
+                    mb-10
+                "
+            >
                 Datarc
             </div>
         </router-link>
@@ -92,7 +100,6 @@
                             "
                             >Forgot your password?</router-link
                         >
-
                     </div>
                     <button
                         v-on:click="send"
@@ -125,6 +132,7 @@ import { validMail, validPassword } from "../Tools/Valid.js";
 
 export default {
     name: "Login",
+    components: {},
     methods: {
         async send() {
             let mail = document.getElementById("email").value;
@@ -157,6 +165,7 @@ export default {
             } else {
                 this.error("mail is not valid");
             }
+            return false;
         },
         error(msg) {
             console.log(msg);
