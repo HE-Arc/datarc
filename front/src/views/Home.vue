@@ -37,41 +37,41 @@
 </template>
 
 <script>
-	import NavigationBar from "@/components/NavigationBar";
-	import { getCookie } from "../Tools/Cookie.js";
-	import { getData } from "../Tools/Network.js";
+import NavigationBar from "@/components/NavigationBar";
+import { getCookie } from "../Tools/Cookie.js";
+import { getData } from "../Tools/Network.js";
 
-	export default {
-		name: "Home",
-		data() {
-			return {
-				welcomeText:
-					"Stocker et partager vos fichiers et dossier, entre vos appareils ou vos amis",
-				isConnected: false,
-				name: "",
-			};
-		},
-		methods: {},
-		components: {
-			NavigationBar,
-		},
-		async created() {
-			let token = getCookie("token");
-			if (token != "") {
-				try {
-					let data = await getData("/user", {
-						Authentication: token,
-					});
-					if (data.status == "ok") {
-						this.isConnected = true;
-						this.name = data.name;
-					}
-				} catch (error) {
-					error;
-				}
-			}
-		},
-	};
+export default {
+  name: "Home",
+  data() {
+    return {
+      welcomeText:
+        "Stocker et partager vos fichiers et dossier, entre vos appareils ou vos amis",
+      isConnected: false,
+      name: "",
+    };
+  },
+  methods: {},
+  components: {
+    NavigationBar,
+  },
+  async created() {
+    let token = getCookie("token");
+    if (token != "") {
+      try {
+        let data = await getData("/user", {
+          Authentication: token,
+        });
+        if (data.status == "ok") {
+          this.isConnected = true;
+          this.name = data.name;
+        }
+      } catch (error) {
+        error;
+      }
+    }
+  },
+};
 </script>
 
 <style></style>
