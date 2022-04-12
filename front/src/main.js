@@ -8,6 +8,6 @@ createApp(App)
     .use(VueToast, {
         // One of the options
         position: 'bottom-right',
-        duration: 2000,
+        duration: 5000,
     })
-    .mount('#app')
+    .mount('#app');
