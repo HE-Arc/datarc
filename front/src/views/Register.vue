@@ -127,6 +127,11 @@
 			},
 			error(error) {
 				console.log(error);
+				this.$toast.open({
+					message: error,
+					type: "warning", // warning, info, error, success,
+					dismissible: true,
+				});
 			},
 		},
 	};

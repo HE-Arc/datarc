@@ -14,3 +14,11 @@ def getUser(request):
         return -1
     
     return getUserFromToken(token)
+
+
+
+def getUserByName(name):
+    users = User.objects.all().filter(name=name)    
+    if len(users) == 1:
+        return users[0]
+    return -1

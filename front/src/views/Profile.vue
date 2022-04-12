@@ -20,7 +20,7 @@
 					</div>
 					<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 overflow-x-auto relative">
 						<UploadWindow />
-						<File v-for="item in itemsOther" :key="item" :name="item.name" :date="item.date" :author="item.author" :url="item.url"/>
+						<File v-for="item in items" :key="item" :name="item.name" :date="item.date" :author="item.author" :url="item.url" :ispublic="item.ispublic"/>
 					</div>
 				</div>
 				<div class="w-1/2 mx-auto">
@@ -30,7 +30,7 @@
 						</div>
 					</div>
 					<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 overflow-x-auto relative">
-						<File v-for="item in itemsOther" :key="item" :name="item.name" :date="item.date" :author="item.author" :url="item.url" />
+						<File v-for="item in itemsOther" :key="item" :name="item.name" :date="item.date" :author="item.author" :url="item.url" :ispublic="item.ispublic"/>
 					</div>
 				</div>
 			</div>
@@ -52,23 +52,42 @@
 		data() {
 			return {
 				items: [],
-				itemsOther: [
-					{
-						name: "mathieu.xlsx",
-						date: "02.04.2022",
-						author: "Mathieu",
-						url: "aa",
-					},
-					{
-						name: "thibault.pdf",
-						date: "02.04.2022",
-						author: "Thibault",
-						url: "aa",
-					},
-				],
+				itemsOther: [],
 			};
 		},
 		methods: {
+			async updateData() {
+				let token = getCookie("token");
+				try {
+					let data = await getData("/files", {
+						Authentication: token,
+					});
+					if (data.status == "ok") {
+						this.items = [];
+						for (let i = 0; i < data.myfiles.length; i++) {
+							this.items.push({
+								name: data.myfiles[i].name,
+								data: "",
+								author: "me",
+								url: data.myfiles[i].url,
+								ispublic: data.myfiles[i].public,
+							});
+						}
+						this.itemsOther = [];
+						for (let i = 0; i < data.sharedfiles.length; i++) {
+							this.itemsOther.push({
+								name: data.sharedfiles[i].name,
+								date: "",
+								author: "not me",
+								url: data.sharedfiles[i].url,
+								ispublic: data.sharedfiles[i].public,
+							});
+						}
+					}
+				} catch (error) {
+					goTo("/");
+				}
+			},
 			upload() {
 				console.log("upload !");
 				const selectedFile = document.getElementById("input1").files[0];
@@ -83,8 +102,13 @@
 				let token = getCookie("token");
 				if (token != "") {
 					try {
-						console.log("ahahahaha");
 						uploadFile(selectedFile, token);
+						this.$toast.open({
+							message: "uploading ...",
+							type: "success", // warning, info, error, success,
+							dismissible: true,
+						});
+						setTimeout(this.updateData, 1000);
 					} catch (e) {
 						this.error(e);
 					}
@@ -92,6 +116,11 @@
 			},
 			error(msg) {
 				console.log(msg);
+				this.$toast.open({
+					message: msg,
+					type: "warning", // warning, info, error, success,
+					dismissible: true,
+				});
 			},
 		},
 		components: {
@@ -118,12 +147,24 @@
 						Authentication: token,
 					});
 					if (data.status == "ok") {
-						for (let i = 0; i < data.files.length; i++) {
+						for (let i = 0; i < data.myfiles.length; i++) {
 							this.items.push({
-								name: data.files[i].name,
-								data: "",
+								name: data.myfiles[i].name,
+								date: "",
 								author: "me",
-								url: data.files[i].url,
+								url: data.myfiles[i].url,
+								ispublic: data.myfiles[i].public,
+							});
+
+							console.log(this.items);
+						}
+						for (let i = 0; i < data.sharedfiles.length; i++) {
+							this.itemsOther.push({
+								name: data.sharedfiles[i].name,
+								date: "",
+								author: "not me",
+								url: data.sharedfiles[i].url,
+								ispublic: data.sharedfiles[i].public,
 							});
 						}
 					}

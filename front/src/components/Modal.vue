@@ -27,6 +27,21 @@
 					<p>Date de mise en ligne : {{ date }}</p>
 					<p>Auteur : {{ author }}</p>
 					<p>Format du fichier : {{ formatFile }}</p>
+					<p>
+						<label for="fname">name:</label>
+						<input
+							type="text"
+							id="fname"
+							name="fname"
+							style="border-bottom: 1px solid orange"
+						/>
+						<button
+							class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2"
+							@click="share"
+						>
+							share
+						</button>
+					</p>
 
 					<!--Footer-->
 					<div class="flex justify-end pt-2">
@@ -40,6 +55,9 @@
 						<button @click="closeModal" class="px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">
 							Close
 						</button>
+						<button @click="deleteFile" class="px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-400">
+							Delete
+						</button>
 					</div>
 				</div>
 			</div>
@@ -50,6 +68,8 @@
 <script>
 	import { downloadFile, getLink } from "../Tools/UploadTools.js";
 	import { getCookie } from "../Tools/Cookie.js";
+	import { fileUpdate } from "../Tools/Network.js";
+	import { validMail } from "../Tools/Valid.js";
 
 	export default {
 		props: {
@@ -58,6 +78,7 @@
 			date: String,
 			author: String,
 			url: String,
+			ispublic: String,
 		},
 		data() {
 			return {
@@ -74,6 +95,60 @@
 			},
 		},
 		methods: {
+			async share() {
+				let token = getCookie("token");
+				let name = document.getElementById("fname").value;
+				if (!validMail(name)) {
+					return;
+				}
+				if (token != "") {
+					try {
+						let data = await fileUpdate(
+							"sharefile",
+							{
+								Authentication: token,
+							},
+							this.url + "&name=" + name
+						);
+						this.error(data.status);
+					} catch (error) {
+						error;
+					}
+				}
+			},
+			async checked() {
+				let token = getCookie("token");
+				if (token != "") {
+					try {
+						await fileUpdate(
+							"public",
+							{
+								Authentication: token,
+							},
+							this.url
+						);
+					} catch (error) {
+						error;
+					}
+				}
+			},
+			async deleteFile() {
+				let token = getCookie("token");
+				if (token != "") {
+					try {
+						await fileUpdate(
+							"delete",
+							{
+								Authentication: token,
+							},
+							this.url
+						);
+					} catch (error) {
+						error;
+					}
+					this.closeModal();
+				}
+			},
 			closeModal() {
 				this.$emit("close-modal");
 			},
@@ -95,7 +170,11 @@
 				}, 3000);
 			},
 			error(msg) {
-				console.log(msg);
+				this.$toast.open({
+					message: msg,
+					type: "warning", // warning, info, error, success,
+					dismissible: true,
+				});
 			},
 		},
 		created() {
