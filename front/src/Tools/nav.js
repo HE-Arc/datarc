@@ -1,5 +1,5 @@
 function goTo(page) {
-    window.location = window.location.origin + "/" + page;
+    window.location = window.location.origin + page;
 }
 
 export { goTo };
