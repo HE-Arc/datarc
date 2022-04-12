@@ -1,12 +1,14 @@
 function validPassword(password) {
     const re = /(?=.*?[a-z])(?=.*?[0-9]).{6,}/;
-    return re.test(password);
+    let foundPassword = re.exec(password);
+    return foundPassword == password;
 }
 
-// todo rename into Username
-function validMail(mail) {
+function validUsername(username) {
     const re = /^[A-Za-z0-9]{2,24}/;
-    return re.test(mail);
+    let foundUsername = re.exec(username);
+    return foundUsername == username;
+    
 }
 
-export { validMail, validPassword }
+export { validUsername, validPassword }

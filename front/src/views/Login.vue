@@ -67,7 +67,7 @@
 	import { sendData } from "../Tools/Network.js";
 	import { setCookie } from "../Tools/Cookie.js";
 	import { goTo } from "../Tools/nav.js";
-	import { validMail, validPassword } from "../Tools/Valid.js";
+	import { validUsername, validPassword } from "../Tools/Valid.js";
 
 	export default {
 		name: "Login",
@@ -76,7 +76,7 @@
 			async send() {
 				let mail = document.getElementById("email").value;
 				let password1 = document.getElementById("password").value;
-				if (validMail(mail)) {
+				if (validUsername(mail)) {
 					if (validPassword(password1)) {
 						try {
 							console.log("SANDINGGG");
