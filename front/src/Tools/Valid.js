@@ -1,11 +1,11 @@
 function validPassword(password) {
-    password
-    return true;
+    const re = /(?=.*?[a-z])(?=.*?[0-9]).{6,}/;
+    return re.test(password);
 }
 
 function validMail(mail) {
-    mail
-    return true;
+    const re = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
+    return re.test(mail);
 }
 
 export { validMail, validPassword }
