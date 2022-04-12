@@ -5,7 +5,7 @@
 				Datarc
 			</div>
 		</router-link>
-		<main class="bg-white mx-auto p-8 rounded-lg shadow-2xl w-1/3" >
+		<main class="bg-white mx-auto p-8 rounded-lg shadow-2xl md:w-1/3" >
 			<section>
 				<h3 class="text-black font-bold text-2xl">Welcome to Datarc</h3>
 				<p class="text-gray-600 pt-2">Create your account.</p>

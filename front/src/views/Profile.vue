@@ -5,8 +5,8 @@
 			<div class="w-11/12 mx-auto text-center text-2xl p-7 font-bold border-b-2 border-black dark:border-dark-border-1">
 				Mon Profile
 			</div>
-			<div class="flex gap-4 mx-8 mt-8 relative">
-				<div class="w-1/2 h-full mx-auto relative">
+			<div class="flex flex-col md:flex-row gap-4 mx-8 mt-8 relative">
+				<div class="w-full md:w-1/2 h-full mx-auto relative">
 					<div class="flex min-h-min justify-between bg-white-background-subtitle dark:bg-dark-background-subtitle rounded-md sticky top-0 z-30">
 						<div class="text-3xl font-bold text-center p-4">
 							Mes Fichiers
@@ -23,7 +23,7 @@
 						<File v-for="item in items" :key="item" :name="item.name" :date="item.date" :author="item.author" :url="item.url" :ispublic="item.ispublic"/>
 					</div>
 				</div>
-				<div class="w-1/2 mx-auto">
+				<div class="w-full md:w-1/2 mx-auto">
 					<div class="flex bg-white-background-subtitle dark:bg-dark-background-subtitle rounded-md sticky top-0 z-30">
 						<div class="text-3xl font-bold text-center p-4">
 							Mes fichiers partagés avec moi

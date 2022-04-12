@@ -1,6 +1,6 @@
 <template>
 	<div class="w-full bg-white-background-header dark:bg-dark-background-header">
-		<div class="w-3/4 container flex justify-between items-center mx-auto">
+		<div class="w-full md:w-3/4 container flex justify-between items-center mx-auto">
 			<div class="w-1/3">
 				<div class="inline-block cursor-pointer text-yellow-300" @click="toggleDarkMode">
 					<svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 20 20" height="48px" viewBox="0 0 20 20" width="48px" fill="currentColor" v-if="!this.darkMode">
@@ -22,12 +22,12 @@
 			</div>
 			<div class="">
 				<router-link to="/" class="cursor-pointer">
-					<div class=" text-center logo text-yellow-300 text-5xl font-bold my-4">
+					<div class="text-center logo text-yellow-300 text-5xl font-bold my-4">
 						Datarc
 					</div>
 				</router-link>
 			</div>
-			<div class="w-1/3">
+			<div class="w-1/3 hidden md:block">
 				<ul class="flex flex-row justify-end mt-4 md:mt-0" v-if="!isConnected">
 					<li>
 						<router-link to="register" class="btn btn-yellow text-white bg-transparent rounded-r-none">
@@ -42,31 +42,68 @@
 				</ul>
 				<ul class="flex flex-row justify-end mt-4 md:mt-0" v-else>
 					<li>
-						<button @click="deconnexion" class="btn btn-yellow bg-transparent ">
+						<button @click="deconnexion" class="btn btn-yellow text-white bg-transparent ">
 							deconnexion
 						</button>
 					</li>
 				</ul>
 			</div>
+			<div class="w-1/3 flex justify-end md:hidden text-yellow-300">
+				<div id="hamburger" @click="toggleHamburger" class="transform duration-75">
+					<svg class="" xmlns="http://www.w3.org/2000/svg" height="48px" width="48px" viewBox="0 0 20 20" fill="currentColor">
+						<path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+					</svg>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="w-full bg-white-background-header dark:bg-dark-background-header text-white" v-if="isHamburgerOpen">
+		<div class="flex flex-col">
+			<ul class="" v-if="!isConnected">
+				<li>
+					<router-link to="register" class="block text-center p-2 border-2 border-yellow-300">
+						Sign up
+					</router-link>
+				</li>
+				<li>
+					<router-link to="login" class="block text-center p-2 border-2 border-yellow-300">
+						Sign in
+					</router-link>
+				</li>
+			</ul>
+			<ul class="" v-else>
+				<li>
+					<button @click="deconnexion" class="block text-center p-2 border-2 border-yellow-300">
+						deconnexion
+					</button>
+				</li>
+			</ul>
 		</div>
 	</div>
 </template>
 
 <script>
 	import { goTo } from "../Tools/nav.js";
+	import { setCookie } from "../Tools/Cookie.js";
 
 	export default {
 		name: "SplashScreen",
 		props: {
-			isConnected: Boolean
-		},
+			isConnected: Boolean,
+			},
 		data() {
 			return {
 				bool: true,
 				darkMode: false,
+				isHamburgerOpen: false
 			};
 		},
 		methods: {
+			toggleHamburger(){
+				this.isHamburgerOpen = !this.isHamburgerOpen;
+				let hamburger = document.getElementById("hamburger");
+				hamburger.classList.toggle("rotate-90");
+			},
 			toggleDarkMode() {
 				document.documentElement.classList.toggle("dark");
 				this.darkMode = !this.darkMode;
@@ -77,7 +114,7 @@
 				}
 			},
 			deconnexion() {
-				document.cookie = "";
+				setCookie("token", "");
 				goTo("/");
 			}
 		},
