@@ -66,7 +66,7 @@
 	import { downloadFile, getLink } from "../Tools/UploadTools.js";
 	import { getCookie } from "../Tools/Cookie.js";
 	import { fileUpdate } from "../Tools/Network.js";
-	import { validMail } from "../Tools/Valid.js";
+	import { validUsername } from "../Tools/Valid.js";
 
 	export default {
 		props: {
@@ -95,7 +95,7 @@
 			async share() {
 				let token = getCookie("token");
 				let name = document.getElementById("fname").value;
-				if (!validMail(name)) {
+				if (!validUsername(name)) {
 					return;
 				}
 				if (token != "") {
@@ -152,7 +152,6 @@
 			},
 			async download() {
 				let token = getCookie("token");
-				console.log(this.url);
 				try {
 					await downloadFile(this.url, token, this.name);
 				} catch (e) {

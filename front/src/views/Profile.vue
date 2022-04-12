@@ -89,7 +89,6 @@
 				}
 			},
 			upload() {
-				console.log("upload !");
 				const selectedFile = document.getElementById("file").files[0];
 				if (selectedFile == null) {
 					this.error("no file selected");
@@ -115,7 +114,6 @@
 				}
 			},
 			error(msg) {
-				console.log(msg);
 				this.$toast.open({
 					message: msg,
 					type: "warning", // warning, info, error, success,
@@ -155,8 +153,6 @@
 								url: data.myfiles[i].url,
 								ispublic: data.myfiles[i].public,
 							});
-
-							console.log(this.items);
 						}
 						for (let i = 0; i < data.sharedfiles.length; i++) {
 							this.itemsOther.push({

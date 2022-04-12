@@ -66,7 +66,6 @@
 									password: password1,
 								}
 							);
-							console.log(result);
 							if (result.status == "ok") {
 								setCookie("token", result.token);
 								goTo("/");

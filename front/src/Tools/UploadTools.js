@@ -21,10 +21,8 @@ export async function uploadFile(file, token = "") {
         })
     })
     let result = await response.json();
-    console.log(result);
     if (response.ok) {
         if (result.status == "ok") {
-            console.log(result)
             let data = await file.arrayBuffer();
             response = await fetch(url + "/upload/?url=" + result.url, {
                 method: 'POST',
@@ -32,7 +30,6 @@ export async function uploadFile(file, token = "") {
 
             })
             result = await response.json();
-            console.log(result);
         }
     } else {
         throw (new Error("error while uploading"));

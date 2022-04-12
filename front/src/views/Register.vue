@@ -76,15 +76,13 @@
 		components: {},
 		methods: {
 			async send() {
-				console.log("salut");
-				let mail = document.getElementById("email").value;
+				let mail = document.getElementById("username").value;
 				let password1 = document.getElementById("password1").value;
 				let password2 = document.getElementById("password2").value;
 				if (password1 == password2) {
 					if (validUsername(mail)) {
 						if (validPassword(password1)) {
 							try {
-								console.log("SANDINGGG");
 								let result = await sendData(
 									"/create_user",
 									{},
@@ -93,7 +91,6 @@
 										password: password1,
 									}
 								);
-								console.log(result);
 								if (result.status == "ok") {
 									setCookie("token", result.token);
 									goTo("/");
@@ -118,7 +115,6 @@
 				document.title = "Register - " + document.title;
 			},
 			error(error) {
-				console.log(error);
 				this.$toast.open({
 					message: error,
 					type: "warning", // warning, info, error, success,

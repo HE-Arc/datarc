@@ -4,7 +4,7 @@
 		<div class="grid justify-center mx-auto h-5/6 rounded-lg w-full">
 			<div class="flex flex-col md:flex-row m-auto gap-2 w-full">
 				<div class="">
-					<div v-if="true">
+					<div v-if="isConnected">
 						<div class="title text-4xl md:text-6xl text-yellow-400 mb-4">
 							Welcome
 						</div>
@@ -22,7 +22,7 @@
 				</div>
 				<div class="grid justify-center content-end w-1/3 p-2">
 					<router-link
-						v-if="true"
+						v-if="isConnected"
 						to="profile"
 						class="btn btn-yellow text-lg md:text-xl"
 						>profile</router-link
@@ -51,7 +51,7 @@ export default {
       welcomeText:
         "Stocker et partager vos fichiers et dossier, entre vos appareils ou vos amis",
       isConnected: false,
-      name: "wwwwwwwwwwwwwwwwwwwwwwwww",
+      name: "",
     };
   },
   methods: {},

@@ -20,9 +20,6 @@
 		},
 		components: {},
 		methods: {
-			test() {
-				console.log("yolo");
-			},
 			onChange() {
 				this.fileList = [...this.$refs.file.files];
 				this.upload();
@@ -46,7 +43,6 @@
 				this.setLeave(e);
 			},
 			upload() {
-				console.log("upload !");
 				const selectedFile = document.getElementById("file").files[0];
 				if (selectedFile == null) {
 					this.error("no file selected");
@@ -67,7 +63,6 @@
 				}
 			},
 			error(msg) {
-				console.log(msg);
 				this.$toast.open({
 					message: msg,
 					type: "warning", // warning, info, error, success,

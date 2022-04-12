@@ -29,7 +29,6 @@
 			ispublic: Boolean,
 		},
 		created() {
-			console.log(this.ispublic);
 			this.text = this.ispublic == true ? "public" : "private";
 		},
 		data() {
@@ -43,7 +42,6 @@
 		},
 		methods: {
 			openModal() {
-				console.log(this);
 
 				this.isSelected = true;
 			},
@@ -53,7 +51,6 @@
 			},
 			keyPressed: function (event) {
 				if (this.isSelected) {
-					console.log(event.key);
 					if (
 						event.key === "Escape" ||
 						event.key === "Esc" ||
