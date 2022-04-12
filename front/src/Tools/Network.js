@@ -1,4 +1,5 @@
-export const url = "http://127.0.0.1:8000/api";
+//export const url = "http://127.0.0.1:8000/api";
+export const url = "https://datarc.srvz-webapp.he-arc.ch/api";
 
 async function getData(page, headers = {}) {
     let request = await fetch(url + page + "/", { headers: headers })
