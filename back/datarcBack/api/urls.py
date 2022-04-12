@@ -10,5 +10,7 @@ urlpatterns = [
     path('files/', views.files, name='files'),
     path('upload/', views.upload, name='upload'),
     path('user/', views.user, name='user'),
-
+    path('delete/', views.delete, name='delete'),
+    path('public/', views.public, name='public'),
+    path('sharefile/', views.sharefile, name='sharefile')
 ]

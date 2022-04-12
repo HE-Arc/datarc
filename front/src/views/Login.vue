@@ -107,7 +107,11 @@
 				return false;
 			},
 			error(msg) {
-				console.log(msg);
+				this.$toast.open({
+					message: msg,
+					type: "warning", // warning, info, error, success,
+					dismissible: true,
+				});
 			},
 		},
 	};

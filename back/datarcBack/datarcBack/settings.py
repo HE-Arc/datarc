@@ -28,7 +28,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env')) # .env file not used in pro
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
-
+#SECRET_KEY = "yolo"
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -85,7 +85,6 @@ WSGI_APPLICATION = 'datarcBack.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-
 """
 #for dev
 DATABASES = {
@@ -106,6 +105,7 @@ DATABASES = {
         'OPTIONS': {'ssl_mode': 'DISABLED'},
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
