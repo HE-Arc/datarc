@@ -44,7 +44,7 @@
 	import File from "@/components/File";
 	import { getData } from "../Tools/Network.js";
 	import { getCookie } from "../Tools/Cookie.js";
-	//import { goTo } from "../Tools/nav.js";
+	import { goTo } from "../Tools/nav.js";
 	import { uploadFile } from "../Tools/UploadTools.js";
 
 	export default {
@@ -140,7 +140,7 @@
 						this.name = data.name;
 					}
 				} catch (error) {
-					//goTo("/");
+					goTo("/");
 				}
 				try {
 					let data = await getData("/files", {
@@ -169,10 +169,10 @@
 						}
 					}
 				} catch (error) {
-					//goTo("/");
+					goTo("/");
 				}
 			} else {
-				//goTo("/");
+				goTo("/");
 			}
 		},
 	};
