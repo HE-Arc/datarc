@@ -13,8 +13,8 @@ from django.core.files import File as djangoFile
 from django.http import FileResponse
 
 
-FILE_PATH = "/home/mat/Desktop/data"
-
+#FILE_PATH = "/home/mat/Desktop/data"
+FILE_PATH = "/home/poweruser/data"
 def index(request):
     user = User(name="joe", password="mdp")
     user.save()
