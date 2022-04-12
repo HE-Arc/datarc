@@ -36,8 +36,8 @@
 			},
 			onDrop(e) {
 				e.preventDefault();
-				this.$refs.file.files = e.dataTransfer.files;
-				this.number = this.$refs.file.files.length;
+				document.getElementById("file").files = e.dataTransfer.files;
+				console.log(document.getElementById("file").files)
 				this.onChange(); // Trigger the onChange event manually
 				// Clean up
 				this.setLeave(e);
