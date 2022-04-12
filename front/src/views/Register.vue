@@ -98,13 +98,13 @@
 									this.error(result.status);
 								}
 							} catch {
-								this.error("mail already used");
+								this.error("username already used");
 							}
 						} else {
 							this.error("password is not valid");
 						}
 					} else {
-						this.error("mail is not valid");
+						this.error("username is not valid");
 					}
 				} else {
 					this.error("passwords are not similar");
