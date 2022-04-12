@@ -30,7 +30,7 @@
 			<div class="w-1/3">
 				<ul class="flex flex-row justify-end mt-4 md:mt-0" v-if="!isConnected">
 					<li>
-						<router-link to="register" class="btn btn-yellow bg-transparent rounded-r-none">
+						<router-link to="register" class="btn btn-yellow text-white bg-transparent rounded-r-none">
 							Sign up
 						</router-link>
 					</li>
@@ -53,6 +53,8 @@
 </template>
 
 <script>
+	import { goTo } from "../Tools/nav.js";
+
 	export default {
 		name: "SplashScreen",
 		props: {
@@ -75,7 +77,8 @@
 				}
 			},
 			deconnexion() {
-				//TODO Mathieu : deconnexion
+				document.cookie = "";
+				goTo("/");
 			}
 		},
 

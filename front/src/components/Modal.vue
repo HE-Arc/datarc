@@ -1,6 +1,6 @@
 <template>
 	<Transition name="fade">
-		<div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center text-black z-10" v-if="isShow">
+		<div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center text-black z-40" v-if="isShow">
 			<div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
 			<div class="modal-container bg-white w-11/12 md:max-w-md lg:max-w-lg mx-auto rounded shadow-lg z-50 overflow-y-auto">
@@ -44,16 +44,13 @@
 					</p>
 
 					<!--Footer-->
-					<div class="flex justify-end pt-2">
+					<div class="flex justify-end gap-2 pt-2">
 						<button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2" @click="copy">
 							copy link
 						</button>
 
 						<button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2" @click="download">
 							download
-						</button>
-						<button @click="closeModal" class="px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">
-							Close
 						</button>
 						<button @click="deleteFile" class="px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-400">
 							Delete

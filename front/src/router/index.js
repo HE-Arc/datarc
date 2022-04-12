@@ -1,10 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
-import Upload from '../views/Upload.vue'
 import Register from '../views/Register.vue'
 import Profile from '../views/Profile.vue'
-import Test from '../views/Test.vue'
 
 
 const routes = [{
@@ -22,12 +20,6 @@ const routes = [{
         meta: {},
     },
     {
-        path: '/upload',
-        name: 'upload',
-        component: Upload,
-        meta: {},
-    },
-    {
         path: '/register',
         name: 'register',
         component: Register,
@@ -39,12 +31,6 @@ const routes = [{
         component: Profile,
         meta: {},
     },
-    {
-        path: '/test',
-        name: 'test',
-        component: Test,
-        meta: {},
-    }
 ]
 
 const router = createRouter({
