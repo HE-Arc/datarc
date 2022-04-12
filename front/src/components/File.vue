@@ -13,43 +13,57 @@
 		</div>
 	</div>
 	<Modal :isShow="isSelected" @close-modal="closeModal" :name="name" :date="date" :author="author" :url="url"/>
+
 </template>
 
 <script>
-import Modal from "@/components/Modal";
+	import Modal from "@/components/Modal";
 
-export default {
-    props: {
-        name : String,
-        date : String,
-        author : String,
-		url : String,
-    },
-    data() {
-        return {
-            isSelected : false,
-        };
-    },
-    components: {
-        Modal,
-    },
-    methods: {
-        openModal() {
-            this.isSelected = true;
-        },
-        closeModal(){
-            this.isSelected = false;
-        },
-        keyPressed: function(event){
-            if(this.isSelected){
-                console.log(event.key);
-                if(event.key === "Escape" || event.key === "Esc" || event.keyCode === 27){
-                    this.closeModal();
-                }
-            }
-        }
-        
-    },
-};
+
+	export default {
+		props: {
+			name: String,
+			date: String,
+			author: String,
+			url: String,
+			ispublic: Boolean,
+		},
+		created() {
+			console.log(this.ispublic);
+			this.text = this.ispublic == true ? "public" : "private";
+		},
+		data() {
+			return {
+				isSelected: false,
+				text: "aa",
+			};
+		},
+		components: {
+			Modal,
+		},
+		methods: {
+			openModal() {
+				console.log(this);
+
+				this.isSelected = true;
+			},
+			closeModal() {
+				this.isSelected = false;
+				this.$parent.updateData();
+			},
+			keyPressed: function (event) {
+				if (this.isSelected) {
+					console.log(event.key);
+					if (
+						event.key === "Escape" ||
+						event.key === "Esc" ||
+						event.keyCode === 27
+					) {
+						this.closeModal();
+					}
+				}
+			},
+		},
+	};
 </script>
 <style></style>

@@ -4,6 +4,18 @@ export const url = "https://datarc.srvz-webapp.he-arc.ch/api";
 async function getData(page, headers = {}) {
     let request = await fetch(url + page + "/", { headers: headers })
     let data = await request.json()
+    console.log(data);
+    if (request.ok) {
+        return data
+    } else {
+        throw (new Error());
+    }
+}
+
+async function fileUpdate(action, headers = {}, u) {
+    let request = await fetch(url + "/" + action + "/" + "?url=" + u, { headers: headers })
+    let data = await request.json()
+    console.log(data);
     if (request.ok) {
         return data
     } else {
@@ -27,5 +39,6 @@ async function sendData(page, params = {}, body = "") {
 
 export {
     getData,
-    sendData
+    sendData,
+    fileUpdate
 }
