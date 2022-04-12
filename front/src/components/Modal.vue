@@ -1,6 +1,6 @@
 <template>
 	<Transition name="fade">
-		<div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center text-black z-10" v-if="isShow">
+		<div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center text-black z-40" v-if="isShow">
 			<div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
 			<div class="modal-container bg-white w-11/12 md:max-w-md lg:max-w-lg mx-auto rounded shadow-lg z-50 overflow-y-auto">
