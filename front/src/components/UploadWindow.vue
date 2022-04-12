@@ -66,8 +66,8 @@
 				let token = getCookie("token");
 				if (token != "") {
 					try {
-						console.log("ahahahaha");
 						uploadFile(selectedFile, token);
+						this.$parent.updateData();
 					} catch (e) {
 						this.error(e);
 					}
@@ -75,6 +75,11 @@
 			},
 			error(msg) {
 				console.log(msg);
+				this.$toast.open({
+					message: msg,
+					type: "warning", // warning, info, error, success,
+					dismissible: true,
+				});
 			},
 		},
 	};

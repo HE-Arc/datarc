@@ -15,6 +15,7 @@ from django.http import FileResponse
 
 #FILE_PATH = "/home/mat/Desktop/data"
 FILE_PATH = "/home/poweruser/data"
+
 def index(request):
     user = User(name="joe", password="mdp")
     user.save()
@@ -94,7 +95,7 @@ def file(request):
                 new_file.save()
                 
                 UserFile(userId=user.id, fileId=new_file.id).save()
-                UserAccess(userId=user.id, fileId=new_file.id).save()
+                #UserAccess(userId=user.id, fileId=new_file.id).save()
                 
                 return JsonResponse({'status' : 'ok', 'url' : url})
       #retrun the file or a 403 error      
@@ -132,9 +133,81 @@ def files(request):
     files = []
     for id in files_id:
         f = File.objects.all().filter(id=id)[0]
-        files.append({'name': f.name, 'url' : f.url})       
-    result = {"status" : "ok", "files" : files}
+        files.append({'name': f.name, 'url' : f.url, 'public' : f.public}) 
+       
+    sharedfiles = []  
+    access = UserAccess.objects.all().filter(userId=user.id)
+    files_id = map(lambda elem : elem.fileId, access)
+    for id in files_id:
+        f = File.objects.all().filter(id=id)[0]
+        sharedfiles.append({'name': f.name, 'url' : f.url, 'public' : f.public}) 
+         
+    result = {"status" : "ok", "myfiles" : files, "sharedfiles": sharedfiles}
     return JsonResponse(result)
+
+
+@csrf_exempt    
+def delete(request):
+    user = getUser(request)
+    if user == -1:
+        return JsonResponse({'status' : 'error user doesnt exist'})  
+    if valid_file_url(request.GET['url']):
+        files =  File.objects.all().filter(url=request.GET['url']) 
+    if len(files) != 1:
+        return JsonResponse({'status' : 'error file name'}) 
+    user_file = UserFile.objects.all().filter(userId=user.id, fileId=files[0].id)
+    if len(user_file) == 1: 
+        UserFile.objects.filter(fileId=files[0].id).delete()
+        UserAccess.objects.filter(fileId=files[0].id).delete()
+        File.objects.filter(id=files[0].id).delete()
+
+    else:
+        return JsonResponse({'status' : 'error file'})  
+           
+    result = {"status" : "ok"}
+    return JsonResponse(result)    
+
+    
+def public(request):  
+    user = getUser(request)
+    if user == -1:
+        return JsonResponse({'status' : 'error user doesnt exist'})  
+    if valid_file_url(request.GET['url']):
+        files =  File.objects.all().filter(url=request.GET['url']) 
+    if len(files) != 1:
+        return JsonResponse({'status' : 'error file name'}) 
+    user_file = UserFile.objects.all().filter(userId=user.id, fileId=files[0].id)
+    if len(user_file) == 1:
+        if files[0].public:
+            files[0].public = False
+        else:
+            files[0].public = True
+        files[0].save()
+    else:
+        return JsonResponse({'status' : 'error file access'})  
+    return JsonResponse({'status' : 'ok'})
+
+def sharefile(request):  
+    user = getUser(request)
+    if user == -1:
+        return JsonResponse({'status' : 'error user doesnt exist'})  
+    if valid_file_url(request.GET['url']):
+        files =  File.objects.all().filter(url=request.GET['url']) 
+    if len(files) != 1:
+        return JsonResponse({'status' : 'error file name'}) 
+    user_file = UserFile.objects.all().filter(userId=user.id, fileId=files[0].id)  
+    if len(user_file) != 1:
+        return JsonResponse({'status' : 'error file access'})  
+    
+    if not valid_user_name(request.GET['name']):
+        return JsonResponse({'status' : 'error name not valid'})
+        
+    share_user = getUserByName(request.GET['name'])
+    if share_user == -1:
+        return JsonResponse({'status' : 'error name doesnt exist'})
+    acc = UserAccess(userId=share_user.id, fileId=files[0].id)
+    acc.save()        
+    return JsonResponse({'status' : 'ok'})
 
 
 @csrf_exempt    
