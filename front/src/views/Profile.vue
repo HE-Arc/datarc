@@ -2,60 +2,33 @@
 	<div class="h-screen">
 		<div class="flex flex-col h-full w-full mx-auto rounded-lg">
 			<NavigationBar />
-			<div
-				class="w-11/12 mx-auto text-center text-2xl p-7 font-bold border-b-2 border-black dark:border-dark-border-1"
-			>
+			<div class="w-11/12 mx-auto text-center text-2xl p-7 font-bold border-b-2 border-black dark:border-dark-border-1">
 				Mon Profile
 			</div>
 			<div class="flex gap-4 mx-8 mt-8 relative">
 				<div class="w-1/2 h-full mx-auto relative">
-					<div
-						class="flex min-h-min justify-between bg-white-background-subtitle dark:bg-dark-background-subtitle rounded-md sticky top-0"
-					>
+					<div class="flex min-h-min justify-between bg-white-background-subtitle dark:bg-dark-background-subtitle rounded-md sticky top-0">
 						<div class="text-3xl font-bold text-center p-4">
 							Mes Fichiers
 						</div>
-						<label
-							for="file"
-							class="w-16 p-2 text-yellow-300 cursor-pointer"
-						>
+						<label for="file" class="w-16 p-2 text-yellow-300 cursor-pointer">
 							<input type="file" id="input1" required />
 						</label>
 						<button v-on:click="upload">Envoyer</button>
 					</div>
-					<div
-						class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 overflow-x-auto relative"
-					>
+					<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 overflow-x-auto relative">
 						<UploadWindow />
-						<File
-							v-for="item in items"
-							:key="item"
-							:name="item.name"
-							:date="item.date"
-							:author="item.author"
-							:url="item.url"
-						/>
+						<File v-for="item in itemsOther" :key="item" :name="item.name" :date="item.date" :author="item.author" :url="item.url"/>
 					</div>
 				</div>
 				<div class="w-1/2 mx-auto">
-					<div
-						class="flex bg-white-background-subtitle dark:bg-dark-background-subtitle rounded-md sticky top-0"
-					>
+					<div class="flex bg-white-background-subtitle dark:bg-dark-background-subtitle rounded-md sticky top-0">
 						<div class="text-3xl font-bold text-center p-4">
 							Mes fichiers partagés avec moi
 						</div>
 					</div>
-					<div
-						class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 overflow-x-auto relative"
-					>
-						<File
-							v-for="item in itemsOther"
-							:key="item"
-							:name="item.name"
-							:date="item.date"
-							:author="item.author"
-							:url="item.url"
-						/>
+					<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 overflow-x-auto relative">
+						<File v-for="item in itemsOther" :key="item" :name="item.name" :date="item.date" :author="item.author" :url="item.url" />
 					</div>
 				</div>
 			</div>
@@ -69,7 +42,7 @@
 	import File from "@/components/File";
 	import { getData } from "../Tools/Network.js";
 	import { getCookie } from "../Tools/Cookie.js";
-	import { goTo } from "../Tools/nav.js";
+	//import { goTo } from "../Tools/nav.js";
 	import { uploadFile } from "../Tools/UploadTools.js";
 
 	export default {
@@ -136,7 +109,7 @@
 						this.name = data.name;
 					}
 				} catch (error) {
-					goTo("/");
+					//goTo("/");
 				}
 				try {
 					let data = await getData("/files", {
@@ -153,10 +126,10 @@
 						}
 					}
 				} catch (error) {
-					goTo("/");
+					//goTo("/");
 				}
 			} else {
-				goTo("/");
+				//goTo("/");
 			}
 		},
 	};

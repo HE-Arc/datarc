@@ -1,16 +1,9 @@
 <template>
-	<div
-		class="w-full h-full absolute inline-block"
-		@dragover.prevent
-		@drop.prevent
-	>
+	<div class="w-full h-full absolute inline-block" @dragover.prevent @drop.prevent>
 		<input type="file" id="file" ref="file" hidden />
-		<div
-			class="dropzone w-full h-full block border-dashed"
-			@drop="onDrop"
-			@dragenter="setEnter"
-			@dragleave="setLeave"
-		></div>
+		<div class="dropzone w-full h-full block border-blue-300 border-dashed z-50" @drop="onDrop" @dragenter="setEnter" @dragleave="setLeave">
+			
+		</div>
 	</div>
 </template>
 
