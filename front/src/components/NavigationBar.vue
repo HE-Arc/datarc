@@ -53,6 +53,8 @@
 </template>
 
 <script>
+	import { goTo } from "../Tools/nav.js";
+
 	export default {
 		name: "SplashScreen",
 		props: {
@@ -75,7 +77,8 @@
 				}
 			},
 			deconnexion() {
-				//TODO Mathieu : deconnexion
+				document.cookie = "";
+				goTo("/");
 			}
 		},
 

@@ -1,7 +1,7 @@
 <template>
 	<div class="h-screen">
 		<div class="flex flex-col h-full w-full mx-auto rounded-lg">
-			<NavigationBar />
+			<NavigationBar :isConnected="true"/>
 			<div class="w-11/12 mx-auto text-center text-2xl p-7 font-bold border-b-2 border-black dark:border-dark-border-1">
 				Mon Profile
 			</div>

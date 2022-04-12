@@ -44,16 +44,13 @@
 					</p>
 
 					<!--Footer-->
-					<div class="flex justify-end pt-2">
+					<div class="flex justify-end gap-2 pt-2">
 						<button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2" @click="copy">
 							copy link
 						</button>
 
 						<button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 hover:bg-gray-100 hover:text-indigo-400 mr-2" @click="download">
 							download
-						</button>
-						<button @click="closeModal" class="px-4 bg-indigo-500 p-3 rounded-lg text-white hover:bg-indigo-400">
-							Close
 						</button>
 						<button @click="deleteFile" class="px-4 bg-red-500 p-3 rounded-lg text-white hover:bg-red-400">
 							Delete
