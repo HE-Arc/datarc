@@ -239,8 +239,8 @@ export default {
 
 #snackbar.show {
     visibility: visible;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    -webkit-animation: fadein 0.5s, fadeout2 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout2 0.5s 2.5s;
 }
 
 @-webkit-keyframes fadein {
@@ -265,7 +265,7 @@ export default {
     }
 }
 
-@-webkit-keyframes fadeout {
+@-webkit-keyframes fadeout2 {
     from {
         bottom: 30px;
         opacity: 1;
@@ -276,7 +276,7 @@ export default {
     }
 }
 
-@keyframes fadeout {
+@keyframes fadeout2 {
     from {
         bottom: 30px;
         opacity: 1;
