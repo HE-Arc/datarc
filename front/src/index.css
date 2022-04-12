@@ -29,11 +29,11 @@
     }
 
     .btn-yellow{
-        @apply bg-yellow-400 border-yellow-400 border-4 text-white font-bold;   
+        @apply bg-surline-yellow border-surline-yellow border-4  text-black font-bold;   
     }
 
     .btn-yellow:hover{
-        @apply bg-yellow-200 border-yellow-200 text-black;
+        @apply bg-yellow-400 border-yellow-400 text-white;
     }
 
     
