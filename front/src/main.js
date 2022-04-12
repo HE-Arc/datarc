@@ -1,5 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-
-createApp(App).use(router).mount('#app')
+import './index.css'
+import VueToast from 'vue-toast-notification';
+createApp(App)
+    .use(router)
+    .use(VueToast, {
+        // One of the options
+        position: 'bottom-right',
+        duration: 5000,
+    })
+    .mount('#app');
